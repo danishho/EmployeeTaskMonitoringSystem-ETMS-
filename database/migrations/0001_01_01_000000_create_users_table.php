@@ -15,8 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone');
+            $table->enum('role', ['staff', 'lecturer', 'admin','hod'])->default('staff');
+            $table->string('department_id', 10)->nullable();
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
+            $table->text('description')->default('none');
+            $table->string('path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
