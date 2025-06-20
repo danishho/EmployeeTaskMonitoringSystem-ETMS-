@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->enum('role', ['staff', 'lecturer', 'admin','hod'])->default('staff');
             $table->string('department_id', 10)->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');

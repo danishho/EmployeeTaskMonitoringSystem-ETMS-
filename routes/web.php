@@ -6,8 +6,12 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('admin.index');
+    return view('welcome');
 });
+
+Route::view('/admin', 'admin.index');
+
+Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::view('/user/add', 'admin.add-user');
 Route::post('/user/add', [UserController::class, 'store']);

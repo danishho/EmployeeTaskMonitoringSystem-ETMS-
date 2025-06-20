@@ -56,12 +56,15 @@
                                 Update Password
                             </button>
                             <!-- Edit -->
-                            <a href="{{ route('user.edit', $user->id) }}"
-                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-3 py-1 rounded flex items-center gap-1 shadow-lg border border-blue-800"
-                               title="Edit">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </a>
+                            @if($user->role != 'admin')
+                                <a href="{{ route('user.edit', $user->id) }}"
+                                   class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-3 py-1 rounded flex items-center gap-1 shadow-lg border border-blue-800"
+                                   title="Edit">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Edit
+                                </a>
+                            @endif
+
                             <!-- Delete Modal Trigger -->
                             <button
                                 @click="openModal = 'delete-{{ $user->id }}'"
