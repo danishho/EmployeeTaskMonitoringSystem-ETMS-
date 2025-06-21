@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('task_id')->nullable()->constrained()->onDelete('cascade'); // for task-level attachments
             $table->foreignId('task_progress_id')->nullable()->constrained()->onDelete('cascade'); // for progress-level attachment
+            $table->string('filePath');
             $table->string('fileName');
             $table->string('fileType')->nullable();
             $table->dateTime('fileDate')->nullable();

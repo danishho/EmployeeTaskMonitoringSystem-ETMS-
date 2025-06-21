@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attachment;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -64,6 +65,46 @@ class HodController extends Controller
     }
 
     public function storeTask(Request $request){
+        $attributesValidate=$request->validate([
+            'title' => ['required'],
+            'description' => ['required'],
+            'priority' => ['required'],
+            'due_date' => ['required'],
+            'assigned_staff' => ['required'],
+        ]);
+
+
+
+        $task = Task::create([
+            'title' => $attributesValidate['title'],
+            'description' => $attributesValidate['description'],
+            'priority' => strtolower($attributesValidate['priority']),
+            'dueDate' => $attributesValidate['due_date'],
+            'assigned_to' => $attributesValidate['assigned_staff'],
+            'created_by' => Auth::id(),
+            'department_id' => Auth::user()->department_id,
+        ]);
+
+
+
+        if($request->hasFile('attachments')){
+            foreach ($request->file('attachments') as $file) {
+                $path = $file->store('attachments', 'public');
+
+                Attachment::create([
+                    'task_id' => $task->id,
+                    'filePath' => $path,
+                    'fileName' => $file->getClientOriginalName(),
+                    'fileType' => $file->getClientOriginalExtension(),
+                    'fileDate' => now(),
+                ]);
+            }
+
+
+        }
+
+        return redirect()->back()->with('success', 'Task created successfully.');
+
 
     }
 }

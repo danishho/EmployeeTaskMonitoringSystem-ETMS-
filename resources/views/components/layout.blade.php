@@ -7,8 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
-<body class="h-screen flex bg-gray-100 font-sans">
-<aside class="w-72 bg-slate-900 text-white flex flex-col justify-between border-r border-slate-700">
+<body class="min-h-screen flex bg-gray-100 font-sans">
+<aside class="w-72 bg-slate-900 text-white flex flex-col justify-between border-r border-slate-700 min-h-screen">
     <div>
         <div class="p-6 border-b border-slate-700">
             <div class="flex items-center gap-3">

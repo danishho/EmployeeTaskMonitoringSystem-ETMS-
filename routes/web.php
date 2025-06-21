@@ -31,4 +31,6 @@ Route::get('/hod', [HodController::class, 'index'])->name('hod.dashboard');
 Route::get('/hod/staffInfo', [HodController::class, 'staffInfo'])->name('hod.staffInfo');
 Route::post('/hod/staffInfo/{user}', [HodController::class, 'staffInfoStore'])->name('hod.staffInfoStore');
 Route::get('/hod/create/task', [HodController::class, 'createTask'])->name('hod.createTask');
+Route::post('/hod/create/task', [HodController::class, 'storeTask'])->name('hod.storeTask');
+
 

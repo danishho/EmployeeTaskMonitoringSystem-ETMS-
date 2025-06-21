@@ -12,7 +12,7 @@ class Attachment extends Model
         return $this->belongsTo(Task::class);
     }
 
-    public function taskProgress(){
-        return $this->belongsTo(TaskProgress::class);
+    public function task_progress(){
+        return $this->belongsTo(Task_progress::class);
     }
 }

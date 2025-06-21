@@ -16,8 +16,8 @@ class Task extends Model
         return $this->belongsTo(User::class,'assigned_to');
     }
 
-    public function taskProgresses(){
-        return $this->hasMany(TaskProgress::class,'task_id');
+    public function task_progresses(){
+        return $this->hasMany(Task_progress::class,'task_id');
     }
 
     public function department(){
