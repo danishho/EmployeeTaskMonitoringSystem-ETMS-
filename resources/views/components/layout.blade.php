@@ -13,14 +13,14 @@
         <div class="p-6 border-b border-slate-700">
             <div class="flex items-center gap-3">
                 <div class="flex flex-col">
-                    <span class="font-semibold">Admin User</span>
-                    <small class="text-slate-400">System Administrator</small>
+                    <span class="text-xl font-semibold">{{\Illuminate\Support\Facades\Auth::user()->name;}}</span>
+                    <small class="text-slate-400 font-bold">{{\Illuminate\Support\Facades\Auth::user()->role;}}</small>
                 </div>
             </div>
         </div>
         <div class="p-6">
             <div class="text-xs uppercase text-slate-400 mb-4">ETMS - Employee Task Monitoring</div>
-            <a href="/" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
+            <a href="{{route('admin.dashboard')}}" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
                 <i class="bi bi-house-door"></i> <span>Dashboard</span>
             </a>
             <a href="/user/list" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
@@ -32,9 +32,11 @@
         </div>
     </div>
     <div class="p-6 border-t border-slate-700">
-        <button class="w-full bg-red-800 hover:bg-red-600 text-slate-300 flex items-center gap-3 p-3 rounded-md text-base">
-            <i class="bi bi-box-arrow-right"></i> Logout
-        </button>
+        <a href="{{route('logout')}}">
+            <button class="w-full bg-red-800 hover:bg-red-600 text-slate-300 flex items-center gap-3 p-3 rounded-md text-base">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
+        </a>
     </div>
 </aside>
 

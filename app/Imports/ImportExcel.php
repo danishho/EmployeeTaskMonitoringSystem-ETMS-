@@ -27,7 +27,7 @@ class ImportExcel implements ToCollection, ToModel
             $user-> password = $row[2];
             $user-> phone  = $row[3];
             $user -> role = $row[4];
-            $user -> department = $row[5];
+            $user -> department_id = $row[5];
             $user -> save();
 
         }

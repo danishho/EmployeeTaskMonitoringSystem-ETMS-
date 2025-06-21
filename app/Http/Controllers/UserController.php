@@ -27,11 +27,23 @@ class UserController extends Controller
 
         //regenerate session token
         request()->session()->regenerate();
+        $user = Auth::user();
 
-        if (Auth::user()->role == 'admin') {
+        if ($user->role == 'admin') {
             return redirect('/admin'); // Change 'admin.dashboard' to your admin route
         }
+        elseif ($user->role == 'hod'){
+            return redirect('/hod');
+        }elseif ( $user->role =='staff' || $user->role == 'lecturer'){
+            return redirect('staff');
+        }
         //redirect
+        return redirect('/');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
         return redirect('/');
     }
     public function store(request $request){

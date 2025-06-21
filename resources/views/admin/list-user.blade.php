@@ -42,7 +42,7 @@
                     <tr class="hover:bg-slate-50">
                         <td class="px-6 py-4">{{ $user->name }}</td>
                         <td class="px-6 py-4">{{ $user->email }}</td>
-                        <td class="px-6 py-4">{{ $user->phone }}</td>
+                        <td class="px-6 py-4">{{ $user->phone ?? '-' }}</td>
                         <td class="px-6 py-4 capitalize">{{ $user->role }}</td>
                         <td class="px-6 py-4">{{ $user->department->name ?? '-' }}</td>
                         <td class="px-6 py-4 flex gap-2 justify-center">

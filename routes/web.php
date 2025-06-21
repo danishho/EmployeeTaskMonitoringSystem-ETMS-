@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExportExcelController;
+use App\Http\Controllers\HodController;
 use App\Http\Controllers\ImportExcelController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -9,9 +10,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/admin', 'admin.index');
+Route::view('/admin', 'admin.index')->name('admin.dashboard');
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::view('/user/add', 'admin.add-user');
 Route::post('/user/add', [UserController::class, 'store']);
@@ -24,3 +26,9 @@ Route::post('/user/{user}/delete', [UserController::class, 'destroy'])->name('us
 Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::post('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 Route::post('/user/{user}/edit/store', [UserController::class, 'editStore'])->name('user.editStore');
+
+Route::get('/hod', [HodController::class, 'index'])->name('hod.dashboard');
+Route::get('/hod/staffInfo', [HodController::class, 'staffInfo'])->name('hod.staffInfo');
+Route::post('/hod/staffInfo/{user}', [HodController::class, 'staffInfoStore'])->name('hod.staffInfoStore');
+Route::get('/hod/create/task', [HodController::class, 'createTask'])->name('hod.createTask');
+

@@ -16,4 +16,8 @@ class Department extends Model
     {
         return $this->hasMany(User::class, 'department', 'id');
     }
+
+    public function tasks(){
+        return $this->hasMany(Task::class, 'department', 'id');
+    }
 }
