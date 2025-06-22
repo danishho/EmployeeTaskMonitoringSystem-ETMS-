@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExportExcelController;
 use App\Http\Controllers\HodController;
 use App\Http\Controllers\ImportExcelController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +33,12 @@ Route::get('/hod/staffInfo', [HodController::class, 'staffInfo'])->name('hod.sta
 Route::post('/hod/staffInfo/{user}', [HodController::class, 'staffInfoStore'])->name('hod.staffInfoStore');
 Route::get('/hod/create/task', [HodController::class, 'createTask'])->name('hod.createTask');
 Route::post('/hod/create/task', [HodController::class, 'storeTask'])->name('hod.storeTask');
+Route::get('/hod/monitor-task/', [HodController::class, 'monitorTask'])->name('hod.monitorTask');
+Route::get('/hod/monitor-task/{task}', [HodController::class, 'monitorTaskDetail'])->name('hod.monitorTaskDetail');
 
+Route::get('staff', [StaffController::class, 'index'])->name('staff.dashboard');
+Route::get('staff/task', [StaffController::class, 'task'])->name('staff.task');
+Route::get('staff/update-task/{task}', [StaffController::class, 'updateProgress'])->name('staff.updateProgress');
+Route::post('staff/update-task/{task}', [StaffController::class, 'updateProgressStore'])->name('staff.updateProgressStore');
+Route::get('staff/monitor-task/{task}', [StaffController::class, 'TaskDetail'])->name('staff.TaskDetail');
 

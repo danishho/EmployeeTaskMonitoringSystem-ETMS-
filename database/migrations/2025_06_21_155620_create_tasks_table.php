@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('dueDate');
             $table->enum('priority', ['low', 'medium', 'high']);
             $table->text('message')->nullable();
+            $table->enum('status', ['Not Started', 'In Progress', 'Completed'])->default('Not Started');
             $table->foreignId('assigned_to')->constrained('users');
             $table->foreignId('created_by')->constrained('users');
             $table->string('department_id', 10)->nullable();

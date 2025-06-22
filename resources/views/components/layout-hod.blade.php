@@ -21,19 +21,16 @@
         <div class="p-6">
             <div class="text-xs uppercase text-slate-400 mb-4">ETMS - Employee Task Monitoring</div>
 
-            <a href="/" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
+            <a href="{{route('hod.dashboard')}}" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
                 <i class="bi bi-house-door"></i> <span>Dashboard</span>
             </a>
             <a href="{{Route('hod.staffInfo')}}" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
                 <i class="bi bi-person-badge"></i> <span>Staff Information</span>
             </a>
-            <a href="/task" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
-                <i class="bi bi-list-check"></i> <span>Manage Task</span>
-            </a>
             <a href="{{Route('hod.createTask')}}" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
                 <i class="bi bi-pencil-square"></i> <span>Create Task</span>
             </a>
-            <a href="/task/monitor" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
+            <a href="{{Route('hod.monitorTask')}}" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
                 <i class="bi bi-clipboard-check"></i> <span>Monitor Task</span>
             </a>
             <a href="/report" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
