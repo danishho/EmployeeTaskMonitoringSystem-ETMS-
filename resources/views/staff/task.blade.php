@@ -93,9 +93,12 @@
 
 
                                 <!-- Mark as Complete Button -->
-                                <button type="button" class="px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
-                                    <i class="bi bi-check-circle font-bold text-xl"></i> Complete
-                                </button>
+                                <a href="{{route('staff.TaskMarkComplete', $task->id)}}">
+                                    <button type="button" class="px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
+                                        <i class="bi bi-check-circle font-bold text-xl"></i> Complete
+                                    </button>
+                                </a>
+
                             </div>
 
                         </div>

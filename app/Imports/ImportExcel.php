@@ -21,16 +21,26 @@ class ImportExcel implements ToCollection, ToModel
     public function model(array $row){
         $this->num ++;
         if($this->num > 1){
-            $user = new User();
-            $user-> name = $row[0];
-            $user-> email = $row[1];
-            $user-> password = $row[2];
-            $user-> phone  = $row[3];
-            $user -> role = $row[4];
-            $user -> department_id = $row[5];
-            $user -> save();
-
+            $user = User::where('email', $row[1])->first();
+            if ($user) {
+                // Update existing user
+                $user->name = $row[0];
+                $user->password = bcrypt($row[2]);
+                $user->phone = $row[3];
+                $user->role = $row[4];
+                $user->department_id = $row[5];
+                $user->save();
+            } else {
+                // Create new user
+                $user = new User();
+                $user->name = $row[0];
+                $user->email = $row[1];
+                $user->password = bcrypt($row[2]);
+                $user->phone  = $row[3];
+                $user->role = $row[4];
+                $user->department_id = $row[5];
+                $user->save();
+            }
         }
-
     }
 }

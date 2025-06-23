@@ -35,10 +35,17 @@ Route::get('/hod/create/task', [HodController::class, 'createTask'])->name('hod.
 Route::post('/hod/create/task', [HodController::class, 'storeTask'])->name('hod.storeTask');
 Route::get('/hod/monitor-task/', [HodController::class, 'monitorTask'])->name('hod.monitorTask');
 Route::get('/hod/monitor-task/{task}', [HodController::class, 'monitorTaskDetail'])->name('hod.monitorTaskDetail');
+Route::post('hod/task/delete/{task}', [HodController::class, 'deleteTask'])->name('hod.deleteTask');
+Route::post('/hod/task/comment/{task}', [HodController::class, 'commentTask'])->name('hod.commentTask');
+Route::get('/hod/report', [HodController::class, 'report'])->name('hod.report');
+Route::get('/hod/report/download', [\App\Http\Controllers\HodController::class, 'downloadReport'])->name('hod.report.download');
 
 Route::get('staff', [StaffController::class, 'index'])->name('staff.dashboard');
 Route::get('staff/task', [StaffController::class, 'task'])->name('staff.task');
 Route::get('staff/update-task/{task}', [StaffController::class, 'updateProgress'])->name('staff.updateProgress');
 Route::post('staff/update-task/{task}', [StaffController::class, 'updateProgressStore'])->name('staff.updateProgressStore');
 Route::get('staff/monitor-task/{task}', [StaffController::class, 'TaskDetail'])->name('staff.TaskDetail');
+Route::get('staff/task/complete/{task}', [StaffController::class, 'TaskMarkComplete'])->name('staff.TaskMarkComplete');
+Route::post('staff/upload-profile-image', [\App\Http\Controllers\StaffController::class, 'uploadProfileImage'])->name('staff.uploadProfileImage');
+
 

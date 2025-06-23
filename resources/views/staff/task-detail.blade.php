@@ -71,20 +71,35 @@
             </div>
             @endif
 
+
             <!-- action Button -->
             <div class="mt-8 flex justify-end gap-3">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
-                    <i class="bi bi-chat-left-text"></i>
-                    <span>Comment</span>
-                </button>
-                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
-                    <i class="bi bi-pencil-square"></i>
-                    <span>Update</span>
-                </button>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
-                    <i class="bi bi-trash"></i>
-                    <span>Delete</span>
-                </button>
+                @if($overallProgress != 100)
+                    <a href="{{route('staff.updateProgress', $task->id)}}">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
+                            <i class="bi bi-arrow-repeat font-bold text-xl"></i>
+                            <span>Update Progress</span>
+                        </button>
+                    </a>
+                    <a href="{{route('staff.TaskMarkComplete', $task->id)}}">
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
+                            <i class="bi bi-check-circle font-bold text-xl"></i>
+                            <span>Mark as Complete</span>
+                        </button>
+                    </a>
+                @endif
+
+
+
+
+{{--                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">--}}
+{{--                    <i class="bi bi-pencil-square"></i>--}}
+{{--                    <span>Update</span>--}}
+{{--                </button>--}}
+{{--                <button class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">--}}
+{{--                    <i class="bi bi-trash"></i>--}}
+{{--                    <span>Delete</span>--}}
+{{--                </button>--}}
             </div>
 
         </div>

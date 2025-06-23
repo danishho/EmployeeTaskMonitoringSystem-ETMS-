@@ -11,11 +11,17 @@
 <aside class="w-72 bg-slate-900 text-white flex flex-col justify-between border-r border-slate-700 min-h-screen">
     <div>
         <div class="p-6 border-b border-slate-700">
-            <div class="flex items-center gap-3">
-                <div class="flex flex-col">
-                    <span class="text-xl font-semibold">{{\Illuminate\Support\Facades\Auth::user()->name;}}</span>
-                    <small class="text-slate-400 font-bold">{{\Illuminate\Support\Facades\Auth::user()->role;}}</small>
-                </div>
+            <div class="flex flex-col items-center gap-2 mb-3">
+                <form method="POST" action="{{ route('staff.uploadProfileImage') }}" enctype="multipart/form-data" class="relative group w-28 h-28 mb-2">
+                    @csrf
+                    <label for="profile-image-upload" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer rounded-full">
+                        Upload Image
+                    </label>
+                    <input id="profile-image-upload" name="profile_image" type="file" class="hidden" onchange="this.form.submit()">
+                    <img src="{{ Auth::user()->path ? asset('storage/' . Auth::user()->path) : asset('logo/kpm.png') }}" alt="Profile Image" class="w-28 h-28 object-cover rounded-full border-4 border-white shadow">
+                </form>
+                <span class="font-semibold text-lg">{{ Auth::user()->name }}</span>
+                <span class="text-sm text-slate-400">{{ Auth::user()->department->name ?? '-' }}</span>
             </div>
         </div>
         <div class="p-6">

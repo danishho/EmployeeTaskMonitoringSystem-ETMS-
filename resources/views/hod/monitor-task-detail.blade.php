@@ -1,8 +1,12 @@
 <x-layout-hod>
     <x-slot:heading>Task Details</x-slot:heading>
-    <div class="p-6 space-y-10">
+    @if(session('success'))
+        <div class="mb-4 p-4 rounded bg-green-100 text-green-800 border border-green-300">
+            {{ session('success') }}
+        </div>
+    @endif
+    <div class="p-6 space-y-10" x-data="modalHandler">
         <!-- Task Details Section -->
-        <div class="bg-white shadow rounded-xl p-6">
             <h2 class="text-xl font-semibold mb-4">Task Details</h2>
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
@@ -50,7 +54,7 @@
             <div class="mt-6 border-t pt-6">
                 <label class="font-medium text-slate-700">Assigned To</label>
                 <div class="flex items-center gap-4 mt-2">
-                    <img src="https://i.pravatar.cc/50?u={{ $task->assignedTo->id }}" class="w-10 h-10 rounded-full" alt="User Avatar">
+                    <img src="{{ isset($task->assignedTo->path) && $task->assignedTo->path ? asset('storage/' . $task->assignedTo->path) : asset('logo/kpm.png') }}" class="w-10 h-10 rounded-full" alt="User Avatar">
                     <div>
                         <p class="font-medium text-slate-800">{{ $task->assignedTo->name }}</p>
                         <small class="text-slate-500">{{ ucfirst($task->assignedTo->role) }}</small>
@@ -86,19 +90,75 @@
 
             <!-- action Button -->
             <div class="mt-8 flex justify-end gap-3">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
+
+{{--                <button class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">--}}
+{{--                    <i class="bi bi-check2-circle"></i>--}}
+{{--                    <span>Verified</span>--}}
+{{--                </button>--}}
+
+{{--                <button class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">--}}
+{{--                    <i class="bi bi-check2-circle"></i>--}}
+{{--                    <span>Not Valid</span>--}}
+{{--                </button>--}}
+
+                <button @click="openModal = 'comment-task'" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
                     <i class="bi bi-chat-left-text"></i>
                     <span>Comment</span>
                 </button>
-                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
-                    <i class="bi bi-pencil-square"></i>
-                    <span>Update</span>
-                </button>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
+
+{{--                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">--}}
+{{--                    <i class="bi bi-pencil-square"></i>--}}
+{{--                    <span>Update</span>--}}
+{{--                </button>--}}
+                <button  @click="openModal = 'delete-task'" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
                     <i class="bi bi-trash"></i>
                     <span>Delete</span>
                 </button>
             </div>
+
+            <!-- Delete Confirmation Modal -->
+            <div
+                x-show="openModal === 'delete-task'"
+                x-transition
+                class="fixed inset-0 flex items-center justify-center z-50 bg-black/50"
+            >
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+                    <h3 class="text-lg font-semibold mb-4 text-red-700">Delete Task</h3>
+                    <p class="mb-4">Are you sure you want to delete <span class="font-bold">{{ $task->title }}</span>?</p>
+                    <form method="POST" action="{{ route('hod.deleteTask', $task->id) }}">
+                        @csrf
+                        <div class="flex justify-end gap-2">
+                            <button type="button" @click="openModal = null" class="px-4 py-2 rounded bg-slate-200 hover:bg-slate-300">Cancel</button>
+                            <button type="submit" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <!-- Update Password Modal -->
+
+        <div
+            x-show="openModal === 'comment-task'"
+            x-transition
+            class="fixed inset-0 flex items-center justify-center z-50 bg-black/50"
+        >
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+                <h3 class="text-lg font-semibold mb-4">Comment on Task</h3>
+                <form method="POST" action="{{route('hod.commentTask', ['task' => $task->id]) }}">
+
+                    @csrf
+                    <textarea
+                        name="message"
+                        required
+                        class="w-full border border-slate-300 rounded-md px-4 py-2 mb-4"
+                        rows="4"
+                    >{{ $task->message}}</textarea>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" @click="openModal = null" class="px-4 py-2 rounded bg-slate-200 hover:bg-slate-300">Cancel</button>
+                        <button type="submit" class="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-700">Comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         </div>
 
@@ -137,6 +197,13 @@
                 @endforelse
             </div>
         </div>
-    </div>
 
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('modalHandler', () => ({
+                openModal: null
+            }));
+        });
+    </script>
 </x-layout-hod>
