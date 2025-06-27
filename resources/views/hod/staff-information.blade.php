@@ -2,7 +2,7 @@
     <x-slot:heading>Staff Information</x-slot:heading>
     <div class="mt-8" x-data="modalHandler"> <!-- Attach Alpine data here -->
         <!-- Search Bar -->
-        <form method="GET" action="{{ route('user.list') }}" class="flex items-center mb-8 gap-2">
+        <form method="GET" action="{{ route('user.list') }}" class="flex items-center mb-8 gap-2 ml-4">
             <input
                 type="text"
                 name="search"
@@ -12,7 +12,7 @@
             />
             <button
                 type="submit"
-                class="bg-blue-700 hover:bg-blue-900 text-white font-bold px-5 py-2 rounded-md flex items-center gap-2 shadow-lg border border-blue-900"
+                class="bg-blue-700 hover:bg-blue-900 text-white font-bold px-5 py-2 rounded-md flex items-center gap-2 shadow-lg border border-blue-900 "
             >
                 <i class="bi bi-search"></i>
                 Search
@@ -40,7 +40,11 @@
                 <tbody class="divide-y divide-slate-200">
                 @forelse($users as $user)
                     <tr class="hover:bg-slate-50">
-                        <td class="px-6 py-4">{{ $user->path ?? 'no picture'}}</td>
+                        <td class="px-6 py-4">
+                            <img src="{{ $user->path ? asset('storage/' . $user->path) : asset('logo/kpm.png') }}"
+                                 alt="Profile"
+                                 class="w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+                        </td>
                         <td class="px-6 py-4">{{ $user->name }}</td>
                         <td class="px-6 py-4">{{ $user->email }}</td>
                         <td class="px-6 py-4">{{ $user->phone ?? '-' }}</td>
@@ -72,9 +76,10 @@
                                         <textarea
                                             name="description"
                                             required
+                                            placeholder="{{ $user->description == 'none' ? 'Put skills information or the advantage' : $user->description }}"
                                             class="w-full border border-slate-300 rounded-md px-4 py-2 mb-4"
                                             rows="4"
-                                        >{{ $user->description }}</textarea>
+                                        ></textarea>
                                         <div class="flex justify-end gap-2">
                                             <button type="button" @click="openModal = null" class="px-4 py-2 rounded bg-slate-200 hover:bg-slate-300">Cancel</button>
                                             <button type="submit" class="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-700">Update</button>

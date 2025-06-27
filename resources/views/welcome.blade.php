@@ -12,12 +12,18 @@
 <div class="bg-white rounded-3xl shadow-xl p-10 w-full max-w-xl">
     <!-- Logo and Title -->
     <div class="flex flex-col items-center mb-8">
-        <img src="{{ asset('logo/kpm.png') }}" alt="Company Logo" class="w-28 h-28 object-contain mb-3">
-        <h1 class="text-2xl font-extrabold text-gray-800 text-center leading-tight">
-            Employee Task Monitoring System (ETMS)<br>
+        <!-- Logo Row -->
+        <div class="flex flex-row justify-center items-center space-x-4 mb-3">
+            <img src="{{ asset('logo/kpm.png') }}" alt="Company Logo" class="w-28 h-28 object-contain">
+            <img src="{{ asset('logo/system.svg') }}" alt="Company Logo" class="w-60 h-60 object-contain">
+        </div>
 
+        <!-- Title -->
+        <h1 class="text-2xl font-extrabold text-gray-800 text-center leading-tight">
+            Employee Task Monitoring System (ETMS)
         </h1>
     </div>
+
 
     <!-- Login Form -->
     <form action="{{route('login')}}" method="POST" class="space-y-6">

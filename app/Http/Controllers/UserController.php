@@ -9,6 +9,17 @@ use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
+//    public function index()
+//    {
+//        $Users = User::all();
+//        $user= $Users->count();
+//        $admin = $Users->where('role', 'admin')->count();
+//        $hod = $Users->where('role', 'hod')->count();
+//        $lecturer = $Users->where('role', 'lecturer')->count();
+//        $staff = $Users->where('role', 'staff')->count();
+//
+//        Return view('admin.index', compact('user', 'admin', 'hod', 'lecturer', 'staff'));
+//    }
     Public function login(){
 
         //validate
@@ -50,7 +61,7 @@ class UserController extends Controller
 
         $validateAttributes= request()->validate([
             'name'=>'required',
-            'email'=> ['required', 'email','max:255', 'unique:users, email'],
+            'email'=> ['required', 'email','max:255', 'unique:users,email'],
             'password'=>['required', 'min:4'],
             'phone'=> ['required'] ,
             'role'=>'required',
@@ -100,9 +111,11 @@ class UserController extends Controller
             'name'=>'required',
             'email'=> ['required', 'email','max:255', 'unique:users, email'],
             'phone'=> ['required'],
+            'password' => ['min:4'],
             'role'=>'required',
             'department_id'=>'required',
         ]);
+
         $user->update($validateAttributes);
         return redirect('/user/list')->with('success', 'User updated successfully!');
     }

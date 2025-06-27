@@ -1,1 +1,1 @@
-<h1 class="styled-heading">{{ $slot }}</h1>
+<h1 class="styled-heading">{{ $slot }} </h1>

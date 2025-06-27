@@ -6,7 +6,7 @@
 
             {{-- Title --}}
             <div class="mb-4">
-                <label for="title" class="block mb-2 font-medium text-slate-800">Title</label>
+                <label for="title" class="block mb-2 font-medium text-slate-800">Title<span class="text-red-700">*</span></label>
                 <input type="text" id="title" name="title" required
                        class="w-full border border-slate-300 rounded-md px-4 py-2" />
                 <x-input-error name="title"></x-input-error>
@@ -14,7 +14,7 @@
 
             {{-- Description --}}
             <div class="mb-4">
-                <label for="description" class="block mb-2 font-medium text-slate-800">Description</label>
+                <label for="description" class="block mb-2 font-medium text-slate-800">Description<span class="text-red-700">*</span></label>
                 <textarea id="description" name="description" rows="4"
                           class="block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500 p-3"
                           placeholder="Brief description about the task"></textarea>
@@ -42,7 +42,7 @@
 
             {{-- Progress Percentage --}}
             <div class="mb-6">
-                <label for="progress" class="block mb-2 font-medium text-slate-800">Progress (%)</label>
+                <label for="progress" class="block mb-2 font-medium text-slate-800">Progress (%)<span class="text-red-700">*</span></label>
                 <input
                     type="number"
                     id="progress"
@@ -64,7 +64,7 @@
             {{-- Submit --}}
             <div class="text-right">
                 <button type="submit"
-                        class="bg-blue-600 hover:bg-blue-800 text-white px-6 py-2 rounded-md">Update</button>
+                        class="bg-blue-600 hover:bg-blue-800 text-white px-6 py-2 rounded-md">Submit</button>
             </div>
         </form>
     </div>

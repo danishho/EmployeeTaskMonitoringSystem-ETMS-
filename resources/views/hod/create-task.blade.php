@@ -11,12 +11,12 @@
             <!-- Form Fields -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm font-semibold text-slate-800 mb-1">Title</label>
-                    <input type="text" name="title" class="block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500 p-3" placeholder="Enter task title" required>
+                    <label class="block text-sm font-semibold text-slate-800 mb-1">Title<span class="text-red-700">*</span></label>
+                    <input type="text" name="title" class="block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500 p-3" placeholder="Enter task title" value="{{old('title')}}" required>
                     <x-input-error name="title"></x-input-error>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-800 mb-1">Priority</label>
+                    <label class="block text-sm font-semibold text-slate-800 mb-1">Priority<span class="text-red-700">*</span></label>
                     <select name="priority" class="block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500 p-3">
                         <option value="High">High Priority</option>
                         <option value="Medium">Medium Priority</option>
@@ -25,17 +25,17 @@
                     <x-input-error name="priority"></x-input-error>
                 </div>
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-semibold text-slate-800 mb-1">Description</label>
-                    <textarea name="description" rows="4" class="block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500 p-3" placeholder="Brief description about the task"></textarea>
+                    <label class="block text-sm font-semibold text-slate-800 mb-1">Description<span class="text-red-700">*</span></label>
+                    <textarea name="description" rows="4" class="block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500 p-3" placeholder="Brief description about the task" "></textarea>
                     <x-input-error name="description"></x-input-error>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-800 mb-1">Due Date</label>
+                    <label class="block text-sm font-semibold text-slate-800 mb-1">Due Date<span class="text-red-700">*</span></label>
                     <input type="date" name="due_date" class="block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500 p-3">
                     <x-input-error name="due_date"></x-input-error>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-800 mb-1">Attachments</label>
+                    <label class="block text-sm font-semibold text-slate-800 mb-1">Attachments <span class="text-gray-700 text-xs">(optional)</span></label>
                     <input type="file" name="attachments[]" multiple class="block w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
                     <x-input-error name="attachments"></x-input-error>
                 </div>
@@ -43,14 +43,14 @@
 
             <!-- Staff Selection -->
             <div>
-                <h2 class="text-xl font-bold text-slate-800 mb-4">Assign to Staff/lecturer</h2>
+                <h2 class="text-xl font-bold text-slate-800 mb-4">Assign to Staff/lecturer<span class="text-red-700">*</span></h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     <!-- Example Card -->
                     @foreach($data as $item)
                         <label class="relative cursor-pointer border rounded-xl p-5 bg-white hover:shadow-lg hover:border-sky-600 transition group">
                             <input type="radio" name="assigned_staff" value="{{$item['user']->id}}" class="absolute right-4 top-4 w-5 h-5 accent-sky-600">
                             <div class="flex items-center gap-4">
-                                <img src="{{asset('logo/formal.jpg')}}" alt="Profile" class="w-14 h-14 rounded-full object-cover border border-gray-300">
+                                <img src="{{$item['user']->path ? asset('storage/' . $item['user']->path) : asset('logo/kpm.png')}}" alt="Profile" class="w-14 h-14 rounded-full object-cover border border-gray-300">
                                 <div>
                                     <h3 class="font-bold text-slate-800 flex items-center gap-2">
                                         {{$item['user']->name}}
@@ -60,6 +60,7 @@
                                 </div>
                             </div>
                             <div class="mt-4 space-y-1 text-sm">
+                                <p class="font-bold text-gray-600">Task Workload</p>
                                 <p class="flex items-center gap-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full"></span> High: <strong>{{$item['priority_count']['high']}}</strong></p>
                                 <p class="flex items-center gap-2"><span class="inline-block w-3 h-3 bg-yellow-400 rounded-full"></span> Medium: <strong>{{$item['priority_count']['medium']}}</strong></p>
                                 <p class="flex items-center gap-2"><span class="inline-block w-3 h-3 bg-green-500 rounded-full"></span> Low: <strong>{{$item['priority_count']['low']}}</strong></p>

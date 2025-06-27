@@ -6,7 +6,13 @@
         <form method="GET" action="{{ route('hod.report') }}" class="bg-white p-6 rounded-lg shadow flex flex-wrap items-center gap-4 sticky top-0 z-10">
             <input type="month" name="month_year" value="{{ request('month_year') }}" class="border rounded p-2" />
             <input type="text" name="user" value="{{ $searchUser }}" placeholder="Search by user" class="border rounded p-2 flex-1" />
-            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
+            <button
+                type="submit"
+                class="bg-blue-700 hover:bg-blue-900 text-white font-bold px-5 py-2 rounded-md flex items-center gap-2 shadow-lg border border-blue-900"
+            >
+                <i class="bi bi-search"></i>
+                Search
+            </button>
             <a href="{{ route('hod.report.download', ['month_year' => $monthYear ?? request('month_year')]) }}"
                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded flex items-center gap-2">
                 <i class="bi bi-download"></i> Download Report

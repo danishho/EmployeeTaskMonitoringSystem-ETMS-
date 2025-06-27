@@ -7,9 +7,9 @@
     @endif
     <div class="p-6 space-y-6">
         <!-- Search & Filter -->
-        <form method="GET" action="{{ route('hod.monitorTask') }}" class="flex flex-col lg:flex-row gap-4 justify-between items-center">
+        <form method="GET" action="{{ route('staff.task') }}" class="flex flex-col lg:flex-row gap-4 justify-between items-center">
             <div class="flex flex-wrap gap-3 w-full lg:w-auto">
-                <input type="text" name="search" value="{{ old('search', $search) }}" placeholder="Search by title or staff" class="px-4 py-2 border rounded-lg w-full md:w-64" />
+                <input type="text" name="search" value="{{ old('search', $search) }}" placeholder="Search by title" class="px-4 py-2 border rounded-lg w-full md:w-64" />
                 <select name="priority" class="px-4 py-2 border rounded-lg">
                     <option value="">All Priorities</option>
                     <option value="high" @if($priority==='high') selected @endif>High</option>
@@ -21,8 +21,12 @@
                     <option value="closest" @if($sort==='closest') selected @endif>Closest Due First</option>
                     <option value="farthest" @if($sort==='farthest') selected @endif>Farthest Due First</option>
                 </select>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                <button
+                    type="submit"
+                    class="bg-blue-700 hover:bg-blue-900 text-white font-bold px-5 py-2 rounded-md flex items-center gap-2 shadow-lg border border-blue-900"
+                >
                     <i class="bi bi-search"></i>
+                    Search
                 </button>
             </div>
         </form>
@@ -93,7 +97,7 @@
 
 
                                 <!-- Mark as Complete Button -->
-                                <a href="{{route('staff.TaskMarkComplete', $task->id)}}">
+                                <a href="{{route('staff.TaskMarkComplete', $task['id'])}}">
                                     <button type="button" class="px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
                                         <i class="bi bi-check-circle font-bold text-xl"></i> Complete
                                     </button>

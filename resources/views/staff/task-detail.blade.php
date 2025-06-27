@@ -1,5 +1,10 @@
 <x-layout-staff>
     <x-slot:heading>Task Details</x-slot:heading>
+    @if(session('success'))
+        <div class="mb-4 p-4 rounded bg-green-100 text-green-800 border border-green-300">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="p-6 space-y-10">
         <!-- Task Details Section -->
         <div class="bg-white shadow rounded-xl p-6">

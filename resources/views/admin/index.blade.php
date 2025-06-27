@@ -9,7 +9,7 @@
             </div>
             <div>
                 <div class="text-sm uppercase">Total Users</div>
-                <div class="text-3xl font-bold">htgfhyt</div>
+                <div class="text-3xl font-bold">{{ $totalUsers }}</div>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
                 <i class="bi bi-person-gear text-4xl"></i>
                 <div>
                     <div class="text-sm uppercase">Total Admin</div>
-                    <div class="text-2xl font-bold">htrht</div>
+                    <div class="text-2xl font-bold">{{ $totalAdmin }}</div>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@
                 <i class="bi bi-person-badge text-4xl"></i>
                 <div>
                     <div class="text-sm uppercase">Total HOD</div>
-                    <div class="text-2xl font-bold">htrhy</div>
+                    <div class="text-2xl font-bold">{{ $totalHod }}</div>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                 <i class="bi bi-person-video2 text-4xl"></i>
                 <div>
                     <div class="text-sm uppercase">Total Lecturer</div>
-                    <div class="text-2xl font-bold">htrh</div>
+                    <div class="text-2xl font-bold">{{ $totalLecturer }}</div>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                 <i class="bi bi-person-workspace text-4xl"></i>
                 <div>
                     <div class="text-sm uppercase">Total Staff</div>
-                    <div class="text-2xl font-bold">thrht</div>
+                    <div class="text-2xl font-bold">{{ $totalStaff }}</div>
                 </div>
             </div>
         </div>

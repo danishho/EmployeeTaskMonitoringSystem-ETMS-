@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('message')->nullable();
             $table->enum('status', ['Not Started', 'In Progress', 'Completed'])->default('Not Started');
             $table->enum('verify', ['Verified', 'Unverified'])->default('Unverified');
-            $table->foreignId('assigned_to')->constrained('users');
+            $table->foreignId('assigned_to')->constrained('users')->onDelete('cascade');
             $table->foreignId('created_by')->constrained('users');
             $table->string('department_id', 10)->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');

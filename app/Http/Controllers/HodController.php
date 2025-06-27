@@ -92,6 +92,7 @@ class HodController extends Controller
             ];
         }
 
+
         return view('hod.create-task',compact('data'));
     }
 
@@ -100,7 +101,7 @@ class HodController extends Controller
             'title' => ['required'],
             'description' => ['required'],
             'priority' => ['required'],
-            'due_date' => ['required'],
+            'due_date' => ['required', 'after_or_equal:today'],
             'assigned_staff' => ['required'],
         ]);
 

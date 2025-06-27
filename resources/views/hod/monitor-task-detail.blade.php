@@ -91,15 +91,8 @@
             <!-- action Button -->
             <div class="mt-8 flex justify-end gap-3">
 
-{{--                <button class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">--}}
-{{--                    <i class="bi bi-check2-circle"></i>--}}
-{{--                    <span>Verified</span>--}}
-{{--                </button>--}}
-
-{{--                <button class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">--}}
-{{--                    <i class="bi bi-check2-circle"></i>--}}
-{{--                    <span>Not Valid</span>--}}
-{{--                </button>--}}
+{{--
+--}}
 
                 <button @click="openModal = 'comment-task'" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow-sm flex items-center gap-2">
                     <i class="bi bi-chat-left-text"></i>
@@ -151,6 +144,7 @@
                         required
                         class="w-full border border-slate-300 rounded-md px-4 py-2 mb-4"
                         rows="4"
+                        placeholder="Enter your comment on the task progress"
                     >{{ $task->message}}</textarea>
                     <div class="flex justify-end gap-2">
                         <button type="button" @click="openModal = null" class="px-4 py-2 rounded bg-slate-200 hover:bg-slate-300">Cancel</button>

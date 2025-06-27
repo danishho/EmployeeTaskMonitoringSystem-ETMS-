@@ -9,7 +9,7 @@
                 name="search"
                 value="{{ $search ?? '' }}"
                 placeholder="Enter user name"
-                class="border border-slate-300 rounded-md px-4 py-2 w-64 shadow-sm"
+                class="border border-slate-300 rounded-md px-4 py-2 w-64 shadow-sm ml-3"
             />
             <button
                 type="submit"

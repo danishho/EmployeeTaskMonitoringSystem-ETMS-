@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="p-6">
-            <div class="text-xs uppercase text-slate-400 mb-4">ETMS - Employee Task Monitoring</div>
+            <div class="text-xs uppercase text-slate-400 mb-4">Employee Task Monitoring System</div>
             <a href="{{route('admin.dashboard')}}" class="flex items-center gap-3 text-slate-300 hover:bg-slate-800 rounded-md p-3 text-base">
                 <i class="bi bi-house-door"></i> <span>Dashboard</span>
             </a>

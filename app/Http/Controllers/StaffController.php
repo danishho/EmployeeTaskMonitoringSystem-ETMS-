@@ -106,6 +106,7 @@ class StaffController extends Controller
             'progress' => 'required',
         ]);
 
+
         if ($attributeValidate['progress'] == 100) {
             $task->status = 'Completed';
             $task->save();
@@ -135,7 +136,7 @@ class StaffController extends Controller
             }
         }
 
-        return redirect('/staff/task')->with('success', 'Task progress record successfully.');
+        return redirect()->route('staff.TaskDetail', $task->id)->with('success', 'Task progress record successfully.');
 
     }
 
