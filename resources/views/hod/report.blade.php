@@ -67,7 +67,7 @@
         <!-- Empty State -->
         <div class="flex flex-col items-center justify-center p-10 text-gray-500">
             <i class="bi bi-emoji-frown text-4xl mb-4"></i>
-            <p class="text-lg">No tasks found for this selection.</p>
+            <p class="text-lg">No tasks data found for generate report.</p>
         </div>
         @endif
 

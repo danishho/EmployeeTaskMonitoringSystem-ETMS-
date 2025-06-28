@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -109,12 +110,17 @@ class UserController extends Controller
     public function editStore(User $user, Request $request){
         $validateAttributes= request()->validate([
             'name'=>'required',
-            'email'=> ['required', 'email','max:255', 'unique:users, email'],
+            'email'=> ['required', 'email','max:255','unique:users, email',Rule::unique('users')->ignore($user->id)],
+            'password'=>['nullable', 'min:4'],
             'phone'=> ['required'],
-            'password' => ['min:4'],
             'role'=>'required',
             'department_id'=>'required',
         ]);
+
+        // Remove password if not filled
+        if (empty($validateAttributes['password'])) {
+            unset($validateAttributes['password']);
+        }
 
         $user->update($validateAttributes);
         return redirect('/user/list')->with('success', 'User updated successfully!');

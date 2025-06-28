@@ -30,7 +30,7 @@
         @csrf
         <div>
             <label for="email" class="block text-gray-700 font-medium mb-1">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+            <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" value="{{old('email')}}">
             <x-input-error name="email"></x-input-error>
         </div>
 

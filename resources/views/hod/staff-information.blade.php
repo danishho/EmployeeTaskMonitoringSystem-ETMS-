@@ -2,7 +2,7 @@
     <x-slot:heading>Staff Information</x-slot:heading>
     <div class="mt-8" x-data="modalHandler"> <!-- Attach Alpine data here -->
         <!-- Search Bar -->
-        <form method="GET" action="{{ route('user.list') }}" class="flex items-center mb-8 gap-2 ml-4">
+        <form method="GET" action="{{ route('hod.staffInfo') }}" class="flex items-center mb-8 gap-2 ml-4">
             <input
                 type="text"
                 name="search"
@@ -76,7 +76,7 @@
                                         <textarea
                                             name="description"
                                             required
-                                            placeholder="{{ $user->description == 'none' ? 'Put skills information or the advantage' : $user->description }}"
+                                            placeholder="{{ $user->description == 'none' ? 'Put skills information or the strengths' : $user->description }}"
                                             class="w-full border border-slate-300 rounded-md px-4 py-2 mb-4"
                                             rows="4"
                                         ></textarea>

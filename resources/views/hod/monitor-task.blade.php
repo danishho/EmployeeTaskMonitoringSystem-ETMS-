@@ -37,7 +37,7 @@
                 <div onclick="window.location.href='{{ route('hod.monitorTaskDetail', $task['id']) }}'" class="relative cursor-pointer bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition transform hover:scale-[1.01] group">
                     <div class="flex justify-between items-center">
                         <h2 class="text-xl font-semibold text-slate-800">{{ $task['title'] }}</h2>
-                        <span class="text-sm text-slate-500 font-bold">Due: {{ \Carbon\Carbon::parse($task['dueDate'])->format('d M Y') }}</span>
+                        <span class="text-sm text-slate-500 font-bold ml-1">Due: {{ \Carbon\Carbon::parse($task['dueDate'])->format('d M Y') }}</span>
                     </div>
                     <p class="text-slate-600 mt-2">{{ $task['description'] }}</p>
 
@@ -57,10 +57,10 @@
                     <div class="mt-4">
                         <div class="flex justify-between text-sm text-slate-600 font-medium">
                             <span>Progress:</span>
-                            <span>{{ $task['progressLevel'] }}%</span>
+                            <span>{{ $task['status'] == 'Completed' ? 100: $task['progressLevel'] }}%</span>
                         </div>
                         <div class="w-full bg-slate-200 rounded-full h-3 mt-1">
-                            <div class="bg-blue-600 h-3 rounded-full" style="width: {{ $task['progressLevel'] }}%"></div>
+                            <div class="bg-blue-600 h-3 rounded-full" style="width: {{ $task['status'] == 'Completed' ? 100: $task['progressLevel'] }}%"></div>
                         </div>
                     </div>
 
@@ -102,6 +102,7 @@
                             <span class="text-sm">This task was due on {{ \Carbon\Carbon::parse($task['dueDate'])->format('d M Y') }} and is not completed.</span>
                         </div>
                     @endif
+                    <p class="text-end text-xs text-blue-700 font-bold">Click the card to see more details</p>
 
 {{--                    <!-- Action Buttons (placeholders) -->--}}
 {{--                    <div class="mt-6 flex justify-between">--}}

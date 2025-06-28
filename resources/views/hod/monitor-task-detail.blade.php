@@ -66,9 +66,15 @@
             <!-- Progress Summary -->
             <div class="mt-6">
                 <label class="font-medium text-slate-700">Overall Progress</label>
-                <div class="w-full bg-slate-200 rounded-full h-4 mt-1">
-                    <div class="bg-blue-600 h-4 rounded-full text-xs text-white text-center" style="width: {{ $overallProgress }}%">{{ $overallProgress }}%</div>
-                </div>
+                @if($task->status == 'Completed')
+                    <div class="w-full bg-slate-200 rounded-full h-4 mt-1">
+                        <div class="bg-blue-600 h-4 rounded-full text-xs text-white text-center" style="width: 100%">100%</div>
+                    </div>
+                @else
+                    <div class="w-full bg-slate-200 rounded-full h-4 mt-1">
+                        <div class="bg-blue-600 h-4 rounded-full text-xs text-white text-center" style="width: {{ $overallProgress }}%">{{ $overallProgress }}%</div>
+                    </div>
+                @endif
             </div>
 
             <!-- Attachments -->
